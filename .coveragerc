@@ -1,0 +1,3 @@
+[run]
+source = voting_machine_alchemy
+omit = voting_machine_alchemy/test*
