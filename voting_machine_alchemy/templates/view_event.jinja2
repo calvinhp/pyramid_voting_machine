@@ -1,0 +1,14 @@
+{% extends "voting_machine_alchemy:templates/layout.jinja2" %}
+
+{% block content %}
+    <h1>{{ entry.name }}</h1>
+    <hr/>
+    <p>{{ entry.date }}</p>
+    <hr/>
+
+    <p><a href="{{ request.route_url('home') }}">Go Back</a> ::
+        <a href="{{ request.route_url('event_action', action='edit',
+        _query={'id':entry.id}) }}">Edit entry</a>
+
+    </p>
+{% endblock %}

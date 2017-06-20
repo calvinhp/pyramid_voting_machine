@@ -1,6 +1,8 @@
 from pyramid.view import view_config
 from pyramid.httpexceptions import HTTPFound
 from pyramid.security import remember, forget
+
+from voting_machine_alchemy.services.event import EventService
 from ..services.user import UserService
 from ..forms import RegistrationForm
 from ..models.user import User
@@ -9,7 +11,8 @@ from ..models.user import User
 @view_config(route_name='home',
              renderer='voting_machine_alchemy:templates/index.jinja2')
 def index_page(request):
-    return {}
+    events = EventService.all(request)
+    return {'events': events}
 
 
 @view_config(route_name='auth', match_param='action=in', renderer='string',

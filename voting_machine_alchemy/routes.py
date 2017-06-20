@@ -3,4 +3,6 @@ def includeme(config):
     config.add_route('home', '/')
     config.add_route('auth', '/sign/{action}')
     config.add_route('register', '/register')
+    config.add_route('event', '/event/{id}/detail')
+    config.add_route('event_action', '/event/{action}')
 

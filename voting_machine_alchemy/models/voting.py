@@ -1,8 +1,10 @@
+import datetime
 from sqlalchemy import (
     Column,
     Index,
     Integer,
     Text,
+    DateTime,
 )
 
 from .meta import Base
@@ -13,7 +15,8 @@ class Event(Base):
     __tablename__ = 'events'
     id = Column(Integer, primary_key=True)
     name = Column(Text)
-    value = Column(Integer)
+    date = Column(DateTime, default=datetime.datetime.utcnow)
+
 
 
 Index('my_index', Event.name, unique=True, mysql_length=255)

@@ -20,6 +20,19 @@
         <a href="{{request.route_url('register')}}">Register here</a>
     {% endif %}
 
+    <p><a href="{{ request.route_url('event_action',action='create') }}">
+        Create a new Event</a></p>
+
+    {% if events %}
+    <h2>Upcoming Events</h2>
+    <ul>
+    {% for entry in events %}
+        <li>
+            <a href="{{ request.route_url('event', id=entry.id) }}">{{ entry.name }}</a>
+        </li>
+    {% endfor %}
+    </ul>
+    {% endif %}
 
 
 {% endblock %}
