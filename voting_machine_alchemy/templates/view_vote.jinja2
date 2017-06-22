@@ -1,0 +1,30 @@
+{% extends "voting_machine_alchemy:templates/layout.jinja2" %}
+
+{% block content %}
+    <h1>{{ entry.name }}</h1>
+    <hr/>
+    <p>{{ entry.date }}</p>
+    <hr/>
+    {% if teams %}
+
+        <h2>Vote!</h2>
+        <ul class="voting-form">
+        {% for team in teams %}
+            <h3>{{ team.name }}</h3>
+            <ul>
+                {% for field in vote_form %}
+                <li>
+                    <dl>
+                        <dt>{{ field.label }}</dt>
+                        <dd>{{ field }}</dd>
+                    </dl>
+                </li>
+                {% endfor %}
+            </ul>
+        {% endfor %}
+        </ul>
+    {% endif %}
+
+    <p><a href="{{ request.route_url('event', id=entry.id) }}">Go Back</a></p>
+    </p>
+{% endblock %}

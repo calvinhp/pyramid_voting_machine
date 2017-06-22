@@ -4,6 +4,7 @@ def includeme(config):
     config.add_route('auth', '/sign/{action}')
     config.add_route('register', '/register')
     config.add_route('event', '/event/{id}/detail')
+    config.add_route('vote', '/event/{id}/vote')
     config.add_route('event_action', '/event/{action}')
-
     config.add_route('team_action', '/event/{event_id}/team/{action}')
+    config.add_route('register-vote', '/event/{event_id}/register-vote')

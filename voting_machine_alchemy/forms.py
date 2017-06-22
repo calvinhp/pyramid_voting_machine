@@ -30,3 +30,15 @@ class TeamCreateForm(Form):
 
 class TeamUpdateForm(TeamCreateForm):
     id = HiddenField()
+
+
+class VoteForm(Form):
+    """ Create a set of radio buttons for a category """
+    vote_choices = (
+        (1, 1),
+        (2, 2),
+        (3, 3),
+    )
+    awesomeness = RadioField('Awesomeness', choices=vote_choices)
+    completeness = RadioField('Completeness', choices=vote_choices)
+    usefulness = RadioField('Usefulness', choices=vote_choices)

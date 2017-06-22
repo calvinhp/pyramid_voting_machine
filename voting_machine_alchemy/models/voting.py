@@ -37,4 +37,6 @@ class Team(Base):
 class Vote(Base):
     """A vote for a team made by a User"""
     __tablename__ = 'votes'
-    id = Column(Integer, primary_key=True)
+    event_id = Column(ForeignKey('events.id'), nullable=False, primary_key=True)
+    team_id = Column(ForeignKey('teams.id'), nullable=False, primary_key=True)
+    user_id = Column(ForeignKey('users.id'), nullable=False, primary_key=True)

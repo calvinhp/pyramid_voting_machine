@@ -17,6 +17,27 @@ h6 {
 p {
   font-weight: 300;
 }
+
+.voting-form ul {
+  list-style: none none;
+}
+
+.voting-form li {
+  display: inline;
+  padding-right: 25px;
+}
+
+.voting-form dt {
+  float: left;
+  width: 200px;
+  text-align: right;
+  margin-right: 15px;
+}
+
+.voting-form dl {
+  margin-bottom: 5px;
+}
+
 .font-normal {
   font-weight: 400;
 }

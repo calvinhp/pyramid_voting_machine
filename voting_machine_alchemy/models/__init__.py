@@ -8,6 +8,7 @@ import zope.sqlalchemy
 from .user import User  # noqa
 from .voting import Event  # noqa
 from .voting import Team  # noqa
+from .voting import Vote  # noqa
 
 # run configure_mappers after defining all of the models to ensure
 # all relationships can be setup
