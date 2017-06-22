@@ -3,6 +3,7 @@ from pyramid.httpexceptions import HTTPNotFound, HTTPFound
 
 from ..models.voting import Event
 from ..services.event import EventService
+from ..services.team import TeamService
 from ..forms import EventCreateForm, EventUpdateForm
 
 
@@ -11,9 +12,11 @@ from ..forms import EventCreateForm, EventUpdateForm
 def event_view(request):
     event_id = int(request.matchdict.get('id', -1))
     entry = EventService.by_id(event_id, request)
+    teams = TeamService.all_by_event(event_id, request)
     if not entry:
         return HTTPNotFound()
-    return {'entry': entry}
+    return {'entry': entry,
+            'teams': teams}
 
 
 @view_config(route_name='event_action', match_param='action=create',

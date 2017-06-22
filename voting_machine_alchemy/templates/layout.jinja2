@@ -32,6 +32,25 @@
             <img class="logo img-responsive" src="{{request.static_url('voting_machine_alchemy:static/pyramid.png')}}" alt="pyramid web framework">
           </div>
           <div class="col-md-10">
+
+              {% if request.authenticated_userid %}
+                  Welcome <strong>{{request.authenticated_userid}}</strong> ::
+                  <a href="{{request.route_url('auth',action='out')}}">Sign Out</a>
+              {% else %}
+                  <form action="{{request.route_url('auth',action='in')}}" method="post" class="form-inline">
+                      <div class="form-group">
+                          <input type="text" name="username" class="form-control" placeholder="Username">
+                      </div>
+                      <div class="form-group">
+                          <input type="password" name="password" class="form-control" placeholder="Password">
+                      </div>
+                      <div class="form-group">
+                          <input type="submit" value="Sign in" class="btn btn-default">
+                      </div>
+                  </form>
+                  <a href="{{request.route_url('register')}}">Register here</a>
+              {% endif %}
+
             {% block content %}
                 <p>No content</p>
             {% endblock content %}

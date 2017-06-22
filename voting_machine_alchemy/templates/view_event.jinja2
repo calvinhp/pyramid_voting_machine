@@ -5,10 +5,28 @@
     <hr/>
     <p>{{ entry.date }}</p>
     <hr/>
+    {% if teams %}
+        <button
+          class="btn btn-default"
+          type="submit"
+          onclick="location.href = '{{ request.route_url('vote', id=entry.id) }}';">
+            Vote!
+        </button>
+
+        <h2>Teams</h2>
+        <ul>
+            {% for team in teams %}
+                <li>
+                    <a href="{{ request.route_url('team_action', event_id=entry.id, _query={'id':team.id}, action='edit') }}">{{ team.name }}</a>
+                </li>
+            {% endfor %}
+        </ul>
+    {% endif %}
 
     <p><a href="{{ request.route_url('home') }}">Go Back</a> ::
         <a href="{{ request.route_url('event_action', action='edit',
-        _query={'id':entry.id}) }}">Edit entry</a>
-
+        _query={'id':entry.id}) }}">Edit entry</a> ::
+        <a href="{{ request.route_url('team_action', action='create',
+        event_id=entry.id) }}">Create Team</a>
     </p>
 {% endblock %}

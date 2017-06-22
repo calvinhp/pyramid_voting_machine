@@ -5,7 +5,10 @@ from sqlalchemy import (
     Integer,
     Text,
     DateTime,
+    ForeignKey,
+    Table,
 )
+from sqlalchemy.orm import relationship
 
 from .meta import Base
 
@@ -17,15 +20,18 @@ class Event(Base):
     name = Column(Text)
     date = Column(DateTime, default=datetime.datetime.utcnow)
 
-
-
-Index('my_index', Event.name, unique=True, mysql_length=255)
-
+team_association_table = Table('team_membership', Base.metadata,
+    Column('team_id', Integer, ForeignKey('teams.id')),
+    Column('user_id', Integer, ForeignKey('users.id'))
+)
 
 class Team(Base):
     """A grouping of users associated with an Event"""
     __tablename__ = 'teams'
     id = Column(Integer, primary_key=True)
+    event_id = Column(ForeignKey('events.id'), nullable=False)
+    name = Column(Text)
+    members = relationship('User', secondary=team_association_table)
 
 
 class Vote(Base):

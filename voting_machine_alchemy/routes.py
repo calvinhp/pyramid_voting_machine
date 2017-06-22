@@ -6,3 +6,4 @@ def includeme(config):
     config.add_route('event', '/event/{id}/detail')
     config.add_route('event_action', '/event/{action}')
 
+    config.add_route('team_action', '/event/{event_id}/team/{action}')

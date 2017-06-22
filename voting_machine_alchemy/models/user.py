@@ -4,11 +4,10 @@ from sqlalchemy import (
     Column,
     Integer,
     Unicode,     #<- will provide Unicode field
-    UnicodeText, #<- will provide Unicode text field
     DateTime,    #<- time abstraction field
 )
 
-from passlib.apps import custom_app_context as blogger_pwd_context
+from passlib.apps import custom_app_context as voting_pwd_context
 
 
 class User(Base):
@@ -23,8 +22,8 @@ class User(Base):
         if password == self.password:
             self.set_password(password)
 
-        return blogger_pwd_context.verify(password, self.password)
+        return voting_pwd_context.verify(password, self.password)
 
     def set_password(self, password):
-        password_hash = blogger_pwd_context.encrypt(password)
+        password_hash = voting_pwd_context.encrypt(password)
         self.password = password_hash
