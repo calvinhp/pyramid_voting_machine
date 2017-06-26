@@ -11,7 +11,9 @@
         <ul class="voting-form">
         {% for team in teams %}
             <h3>{{ team.name }}</h3>
+            <form>
             <ul>
+                <input type="hidden" name="team_id" value="{{ team.id }}" />
                 {% for field in vote_form %}
                 <li>
                     <dl>
@@ -21,10 +23,25 @@
                 </li>
                 {% endfor %}
             </ul>
+            </form>
         {% endfor %}
         </ul>
     {% endif %}
 
     <p><a href="{{ request.route_url('event', id=entry.id) }}">Go Back</a></p>
-    </p>
+
+    <script>
+        (function($) { $(function() {
+            $('input').click(function(){
+                var team_id = $(this).parents('form').find('input[type="hidden"]')[0].value;
+                var vote_data = {
+                    team_id: team_id,
+                    category: $(this).attr('name'),
+                    value: $(this).attr('value')
+                };
+                // post the vote_data json back to the server
+                $.post('{{ request.route_url('register-vote', event_id=event_id) }}', vote_data);
+            })
+        }); })(jQuery);
+    </script>
 {% endblock %}

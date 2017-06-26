@@ -1,7 +1,7 @@
 import datetime
 from sqlalchemy import (
     Column,
-    Index,
+    String,
     Integer,
     Text,
     DateTime,
@@ -40,3 +40,5 @@ class Vote(Base):
     event_id = Column(ForeignKey('events.id'), nullable=False, primary_key=True)
     team_id = Column(ForeignKey('teams.id'), nullable=False, primary_key=True)
     user_id = Column(ForeignKey('users.id'), nullable=False, primary_key=True)
+    category = Column(String, nullable=False, primary_key=True)
+    value = Column(Integer, nullable=False, primary_key=True)
