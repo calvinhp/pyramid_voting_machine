@@ -17,7 +17,7 @@ requires = [
     'transaction',
     'zope.sqlalchemy',
     'waitress',
-    'wtforms==2.1',  # form library
+    'wtforms==2.3.0',  # form library
     'WTForms-SQLAlchemy',
     'webhelpers2==2.0',  # various web building related helpers
     'passlib',
